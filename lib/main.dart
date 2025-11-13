@@ -61,7 +61,9 @@ class WeatherData {
 Future<WeatherData> fetchWeather() async {
   const url =
       'https://api.open-meteo.com/v1/forecast?latitude=-8.65&longitude=115.2167&daily=temperature_2m_max,temperature_2m_min,weather_code&current=temperature_2m,weather_code,wind_speed_10m,cloud_cover&timezone=Asia%2FSingapore&forecast_days=7';
+  
   final response = await http.get(Uri.parse(url));
+  
   if (response.statusCode == 200) {
     return WeatherData.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {
